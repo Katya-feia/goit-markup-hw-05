@@ -10,6 +10,7 @@
     --nt-color:#757575;
     --blue:#2196F3;
     --icon1:#AFB1B8;
+    --timing-function:cubic-bezier(0.4, 0, 0.2, 1);
 
 }
 
@@ -72,6 +73,22 @@ color: var(--blue);
     gap: 50px;
     margin-left: 93px;
 }
+.header-nav .header-nav-link{
+    position: relative;
+}
+.header-nav-link.current::after{
+    position: absolute;
+  bottom: -39px;
+  right: 0px;
+  content: "";
+  width: 100%;
+  height: 4px;
+  background-color: var(--blue);
+  border-radius: 2px;
+}
+.header-nav-link.current{
+    color: var(--blue);
+}
 .header-contact{
     display: flex;
     gap: 50px;
@@ -83,7 +100,8 @@ font-weight: 500;
 font-size: 14px;
 line-height: calc(16/14);
 letter-spacing: 0.02em;
-text-decoration: none;}
+text-decoration: none;
+transition: color 250ms var(--timing-function);}
 .header-nav-link{
 color: var(--mt-color);
 }
@@ -93,12 +111,9 @@ color: var(--mt-color);
     gap: 10px;
     align-items:center;
 }
-.header-contact-link:hover .header-icon,
-.header-contact-link:focus .header-icon{
-    fill: var(--blue);
-}
+
 .header-icon{
-    fill: var(--nt-color);
+    fill: currentColor;
 }
 
 .header-nav-link:hover,
@@ -311,7 +326,7 @@ margin-bottom: 16px;
 .sec-team-link{
     background-color:var(--wight);
     color: var(--nt-color);
-    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1), background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: color 250ms var(--timing-function), background-color 250ms var(--timing-function);
 }
 .team-soc-icon{
     fill: currentColor;
@@ -324,12 +339,6 @@ margin-bottom: 16px;
     background-color: var(--blue);
     color: var(--wight);
 }
-/*Для всіх ефектів ховер і фокуса (колір, фон, тінь) зроблені переходи.
- Час - 250ms, функція розподілу часу - cubic-bezier(0.4, 0, 0.2, 1).*/
-/*.sec-team-link:hover .team-soc-icon,
-.sec-team-link:focus .team-soc-icon{
-    fill: var(--wight);
-}*/
 
 .sec-clients-list {
     display: flex;
@@ -345,22 +354,22 @@ margin-bottom: 16px;
     height: 100%;
     background-color: var(--wight);
     border: 1px solid var(--icon1);
+    color: var(--icon1);
     border-radius: 4px;
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: color 250ms var(--timing-function), border 250ms var(--timing-function);
 }
 .cleints-icon {
-    fill: var(--icon1);
+    fill: currentColor;
 }
 .sec-clients-link:hover,
 .sec-clients-link:focus{
 border: 1px solid var(--blue);
+color: var(--blue);
 }
-.sec-clients-link:hover .cleints-icon,
-.sec-clients-link:focus .cleints-icon{
-    fill: var(--blue);
-}
+
 .footer{
     background-color: var(--gray-dark);
     padding-top: 60px;
@@ -399,6 +408,10 @@ margin-top: 20px;
 .footer-items{
     margin-top: 9px;
 }
+.footer-link,
+.footer-adress{
+    transition: color 250ms var(--timing-function);
+}
 .footer-adress:hover,
 .footer-adress:focus,
 .footer-adress:active,
@@ -422,7 +435,7 @@ color: var(--wight);
 }
 .footer-soc-link{
     background-color: rgba(255, 255, 255, 0.1);
-}
+    transition: background-color 250ms var(--timing-function);}
 .footer-soc-icon{
     fill: var(--wight);
 }
@@ -443,6 +456,9 @@ cursor: pointer;
 border: none;
 border-radius: 4px;
 padding: 6px 25px;
+transition: background-color 250ms var(--timing-function), 
+color 250ms var(--timing-function),
+box-shadow 250ms var(--timing-function);
 }
 .sec-filter-bt:hover,
 .sec-filter-bt:focus,
@@ -463,6 +479,7 @@ padding: 6px 25px;
 }
 .sec-projects-item{
     flex-basis: calc((100% - 60px)/3);
+    transition: box-shadow 250ms var(--timing-function);
 }
 .sec-projects-cart{
     padding: 20px 24px;
@@ -494,4 +511,33 @@ color: var(--nt-color);
 .sec-projects-item:focus{
     box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06), 1px 4px 6px rgba(0, 0, 0, 0.16);
 
+}
+
+.projects-img{
+    position: relative;
+    overflow: hidden;
+}
+
+.projects-overlay{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color:var(--blue);
+    opacity: 0.9;
+    padding-top: 63px;
+    padding-left: 24px;
+    text-align: left;
+    font-weight: 400;
+font-size: 18px;
+line-height: calc(28/18);
+letter-spacing: 0.03em;
+color: var(--wight);
+transform: translateY(100%);
+transition: transform 2500ms var(--timing-function);
+}
+
+.sec-projects-item:hover .projects-overlay{
+    transform: translateY(0)
 }
